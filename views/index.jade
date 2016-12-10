@@ -9,9 +9,9 @@ block content
   .container
       form.form(action='/posts', method='POST')
         label(for='position') 나이
-        input(type='postion', id='position', name='age' placeholder='position')
+        input(type='postion', id='position', name='position' placeholder='age')
         label(for='date') 성별
-        input(type='checkin', id='checkin', name='sex' placeholder='checkin')        
+        input(type='checkin', id='checkin', name='checkin' placeholder='sex')        
         label priority
         select(name='person')
           option(value='1',selected) 마른체형
@@ -20,6 +20,9 @@ block content
           option(value='4') 높은 가격
           option(value='5') 유명 브랜드
           option(value='6') 인기 많은 순
+        label(for='search') 찾는 옷
+        input(type='search', id='search', name='search' placeholder='search') 
+  
         button.btn.btn-lg.btn-primary.btn-block(type='submit') 스타일 검색
         
       // 스타일 검색을 누르면
