@@ -3,19 +3,30 @@ extends layout
 block hero-unit
   .jumbotron
     .container
-      h1 Express oneself </br> 스스로에게 어울리는 스타일을 찾아보세요.
+      h1 Express oneself </br> 스스로를 표현할 스타일들을 찾아보세요.
 
 block content
   .container
       form.form(action='/posts', method='POST')
-        label(for='position') 위치
+        label(for='position') 나이
         input(type='postion', id='position', name='position' placeholder='position')
-        label(for='date') 날짜
+        label(for='date') 성별
         input(type='checkin', id='checkin', name='checkin' placeholder='checkin')
         input(type='checkout', id='checkout', name='checkout' placeholder='checkout')
-        label(for='people_number') 숙박인원
+        
+        .form-group
+          label priority
+          select(name='person')
+            option(value='1',selected) 마른체형
+            option(value='2') 통통한 체형
+            option(value='3') 낮은 가격
+            option(value='4') 높은 가격
+            option(value='5') 유명 브랜드
+            option(value='6') 인기 많은 순
+  
+        label(for='people_number')  
         input(type='checkin', id='checkin', name='checkin' placeholder='number of people')
-        button.btn.btn-lg.btn-primary.btn-block(type='submit') 숙박검색 
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') 스타일 검색
         // 숙박검색을 누르면 
       
       // modal 형태(위에 부분적으로 뜨는 형태 )로 회원 가입 창이 뜨게 함
