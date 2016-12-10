@@ -8,27 +8,35 @@ block content
         type='name', id='name', name='name', class='form-control', 
         placeholder='Name', required, autofocus
       )
-      label(for='city') City
+      label(for='city') clothSort
       input(
         type='city', id='city', name='city', class='form-control', 
         placeholder='City', required, autofocus
       )
-      label(for='address') Address
+      label(for='address') sex
       input(
         type='address', id='address', name='address', class='form-control', 
         placeholder='Address', required, autofocus
       )
-      label(for='convenience') Convenience
+      label(for='convenience') Age 
       input(
-        type='convenience', id='convenience', name='convenience', class='form-control', 
-        placeholder='Convenience', required, autofocus
+        select(name='person')
+          option(value='1',selected) 1
+          option(value='2') 2
+          option(value='3') 3
+          option(value='4') 4
+          option(value='5') 5
+          option(value='6') 6
+          option(vaule='7') 7
+          option(value='8') 8
+          option(value='9') 9
       )
-      label(for='content') Content
+      label(for='content') photo
       textarea(
         type='content', id='content', name='content', class='form-control', 
         placeholder='Content', required, autofocus
       )
-      label(for='fee') Fee
+      label(for='fee') Price
       input(
         type='fee', id='fee', name='fee', class='form-control', 
         placeholder='Fee', required, autofocus
