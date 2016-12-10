@@ -1,0 +1,25 @@
+ul.room
+
+.no-room 
+  .alert.alert-info 방이 없습니다.
+
+h1.page-header List
+
+    
+  table.table.table-bordered
+   thead
+       tr
+         th 제목
+         th 도시
+         th 가격
+         th 주인
+         th 예약
+     tbody
+       each room in rooms
+         tr
+           td
+            a(href='/rooms/#{room.id}')= room.name
+           td= room.city
+           td= room.fee
+           td= room.user
+           td= room.reservation
