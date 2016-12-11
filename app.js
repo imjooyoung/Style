@@ -1,3 +1,4 @@
+// 외부 모듈들을 사용
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -10,7 +11,10 @@ var flash = require('connect-flash');
 var mongoose   = require('mongoose');
 var passport = require('passport');
 var configAuth = require('./config/auth');
+// 사진 업로드
+var multipart = require('connect-multiparty');
 
+// 지정 모듈들을 사용 
 var routes = require('./routes/index'),
     users = require('./routes/users'),
     posts = require('./routes/posts'),
@@ -22,7 +26,7 @@ var routeAuth = require('./routes/auth');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views')); // __dirname : 현재 실행중인 코드의 폴더 경로
 app.set('view engine', 'jade');
 if (app.get('env') === 'development') {
   app.locals.pretty = true;
@@ -34,6 +38,7 @@ mongoose.connect('mongodb://young69825:wndud234@ds139817.mlab.com:39817/jooyoung
 mongoose.connection.on('error', console.log);
 
 // uncomment after placing your favicon in /public
+// app.use(express.static('public')); 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -44,7 +49,7 @@ app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: '비밀번호를 길게 설정하쟞 20161206' 
+  secret: 'long-long-long-secret-string-1313513tefgwdsvbjkvasd' 
 }));
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -60,12 +65,16 @@ app.use(function(req, res, next) {
   next();
 });
 
+// 사진 업로드
+app.use(multipart({uploadDir:__dirname + '/multipart'}));
+
 configAuth(passport);
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/posts', posts);
-app.use('/rooms', rooms);
+// 라우트 합니다.
+app.use('/', routes);  // 메인 홈페이지~ routes파일에 있는 index.js가 
+app.use('/users', users); // localhost:3000/users는 users.js
+app.use('/posts', posts); // /posts 는 posts.js
+app.use('/rooms', rooms); // ..
 //app.use('/hosting', hosting);
 routeAuth(app, passport);
 
@@ -89,6 +98,12 @@ if (app.get('env') === 'development') {
     });
   });
 }
+// 사진 업로드
+app.get('/',function(req,res){
+  res.render('upload',{
+    
+  });
+});
 
 // production error handler
 // no stacktraces leaked to user

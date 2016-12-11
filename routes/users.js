@@ -2,6 +2,7 @@ var express = require('express'),
     User = require('../models/User');
 var router = express.Router();
 
+// 일단 로그인이 필요함
 function needAuth(req, res, next) {
   if (req.isAuthenticated()) {
     next();
@@ -14,7 +15,7 @@ function needAuth(req, res, next) {
 function validateForm(form, options) {
   var name = form.name || "";
   var email = form.email || "";
-  name = name.trim();
+  name = name.trim(); // 변경 가능 하도록 
   email = email.trim();
 
   if (!name) {
