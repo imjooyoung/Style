@@ -11,8 +11,6 @@ var flash = require('connect-flash');
 var mongoose   = require('mongoose');
 var passport = require('passport');
 var configAuth = require('./config/auth');
-// 사진 업로드
-var multipart = require('connect-multiparty');
 
 // 지정 모듈들을 사용 
 var routes = require('./routes/index'),
@@ -65,9 +63,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-// 사진 업로드
-app.use(multipart({uploadDir:__dirname + '/multipart'}));
-
 configAuth(passport);
 
 // 라우트 합니다.
@@ -98,12 +93,6 @@ if (app.get('env') === 'development') {
     });
   });
 }
-// 사진 업로드
-app.get('/',function(req,res){
-  res.render('upload',{
-    
-  });
-});
 
 // production error handler
 // no stacktraces leaked to user
